@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+    
+	{% for chat in chats %}
+		<li><label class="chat_names">{{ chat }}</label></li>
+	{% endfor %}
+    
+{% else %}
+    <p>Welcome, new user. Please log in.</p>
+{% endif %}
+
+{% endblock %}

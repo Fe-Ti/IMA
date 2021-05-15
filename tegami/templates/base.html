@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Tegami</title>
+</head>
+
+<body>
+    <div id="sidebar">
+        {% block sidebar %}
+            {% if user.is_authenticated %}
+                <p><a href="{% url 'tegami:logout' %}">Logout</a></p>
+            {% else %}
+                <p><a href="{% url 'tegami:login' %}">Login</a></p>
+            {% endif %}
+        {% endblock %}
+    </div>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
