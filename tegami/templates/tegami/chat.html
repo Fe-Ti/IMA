@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'tegami:send' chat.id %}" method="post">
+    {% csrf_token %}
+        <input type="text" name="message">
+        <input type="submit" value="Send >>">
+</form>
+	{% for msg in msgs %}
+        <li><label class="chat_msg">----</label></li>
+		<li><label class="chat_msg">{{ msg.author.username }}({{ msg.date }}):</label></li>
+		<li><label class="chat_msg">{{ msg }}</label></li>
+        <li><label class="chat_msg">----</label></li>
+	{% endfor %}
+	
+    
+{% else %}
+    <p>Welcome, new user. Please log in.</p>
+{% endif %}
+
+{% endblock %}

@@ -6,7 +6,8 @@
     <p>Welcome, {{ user.username }}. Thanks for logging in.</p>
     
 	{% for chat in chats %}
-		<li><label class="chat_names">{{ chat }}</label></li>
+		<li><a href="{% url 'tegami:chat' chat.id %}"><label class="chat_name">{{ chat }}</label></a></li>
+		</br>
 	{% endfor %}
     
 {% else %}

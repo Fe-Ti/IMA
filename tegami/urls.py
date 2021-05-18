@@ -9,6 +9,8 @@ app_name = 'tegami'
 urlpatterns = [
     path('', views.index, name='index'),
     path('profile/', views.profile, name='profile'),
+    path('chats/<int:chat_id>/', views.chat, name='chat'),
+    path('chats/<int:chat_id>/send', views.send, name='send'),
     path('accounts/profile/', views.accprofile, name='accprofile'),
     path('login/', auth_views.LoginView.as_view(template_name='tegami/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='tegami/logged_out.html'), name='logout'),
