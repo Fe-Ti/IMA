@@ -12,13 +12,14 @@
         <input type="text" name="message">
         <input type="submit" value="Send >>">
 </form>
+	<label class="chat_msg">@@ Newer messages @@</label>
 	{% for msg in msgs %}
         <li><label class="chat_msg">----</label></li>
-		<li><label class="chat_msg">{{ msg.author.username }}({{ msg.date }}):</label></li>
+		<li><label class="chat_msg">{{ msg.author.username }} ({{ msg.date }}):</label></li>
 		<li><label class="chat_msg">{{ msg }}</label></li>
         <li><label class="chat_msg">----</label></li>
 	{% endfor %}
-	
+	<label class="chat_msg">@@ Older messages @@</label>
     
 {% else %}
     <p>Welcome, new user. Please log in.</p>

@@ -29,22 +29,22 @@ def chat(request, chat_id):
             chat = models.Chat.objects.get(pk=chat_id)
         except models.Chat.DoesNotExist:
             raise Http404("Chat does not exist")
-        
+
         if chat in models.Chat.objects.filter(users__username=request.user.username):
-            msgs = models.User_message.objects.filter(chat=chat_id)
+            msgs = models.User_message.objects.filter(chat=chat_id).order_by('-date')[:100]
             return render(request, 'tegami/chat.html', {'msgs':msgs, 'chat':chat})
         else:
             return HttpResponseRedirect(reverse('tegami:profile'))
     else:
         return HttpResponseRedirect(reverse('tegami:login'))
-    
+
 def send(request, chat_id):
     if request.user.is_authenticated:
         try:
             chat = models.Chat.objects.get(pk=chat_id)
         except models.Chat.DoesNotExist:
             raise Http404("Chat does not exist")
-        
+
         if chat in models.Chat.objects.filter(users__username=request.user.username):
             if 'message' in request.POST:
                 new_msg = chat.user_message_set.create(author=request.user,text=request.POST.dict()['message'])
@@ -53,4 +53,4 @@ def send(request, chat_id):
             return HttpResponseRedirect(reverse('tegami:profile'))
     else:
         return HttpResponseRedirect(reverse('tegami:login'))
-    
+
