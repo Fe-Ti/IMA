@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    {% load static %}
+    <link rel="stylesheet" href="/static/admin/css/base.css">
+    <link rel="stylesheet" href="/static/admin/css/forms.css">
+    <link rel="stylesheet" href="/static/admin/css/nav_sidebar.css">
     <title>Tegami</title>
-</head>
 
-<body>
-    <div id="sidebar">
-        {% block sidebar %}
+    <div id="header">
+        {% block header %}
             {% if user.is_authenticated %}
-                <p><a href="{% url 'tegami:logout' %}">Logout</a></p>
+		<div>
+                <p><a class="button" href="{% url 'tegami:logout' %}">Logout</a></p>
+		</div>
             {% else %}
-                <p><a href="{% url 'tegami:login' %}">Login</a></p>
+		<div >
+                <p><a class="button" href="{% url 'tegami:login' %}">Login</a></p>
+		</div>
             {% endif %}
         {% endblock %}
     </div>
+</head>
 
+<body>
     <div id="content">
         {% block content %}{% endblock %}
     </div>

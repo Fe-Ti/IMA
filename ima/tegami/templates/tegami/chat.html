@@ -14,10 +14,9 @@
 </form>
 	<label class="chat_msg">@@ Newer messages @@</label>
 	{% for msg in msgs %}
-        <li><label class="chat_msg">----</label></li>
+        <p></p>
 		<li><label class="chat_msg">{{ msg.author.username }} ({{ msg.date }}):</label></li>
-		<li><label class="chat_msg">{{ msg }}</label></li>
-        <li><label class="chat_msg">----</label></li>
+		<p><label class="chat_msg">{{ msg }}</label></p>
 	{% endfor %}
 	<label class="chat_msg">@@ Older messages @@</label>
     

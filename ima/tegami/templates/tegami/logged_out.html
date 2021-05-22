@@ -5,7 +5,7 @@
 {% if user.is_authenticated %}
     <p>WTF, {{ user.username }}. Why are you there?</p>
 {% else %}
-    <p><a href="{% url 'tegami:index' %}">Home</a></p>
+    <p><a class="button" href="{% url 'tegami:index' %}">Home</a></p>
 {% endif %}
 
 {% endblock %}
