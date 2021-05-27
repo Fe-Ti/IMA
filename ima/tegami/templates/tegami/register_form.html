@@ -22,16 +22,16 @@
 {% csrf_token %}
 <table>
 <tr>
-    <td>{{ django.auth.form.username.label_tag }}</td>
-    <td>{{ django.auth.form.username }}</td>
+    <td>{{ form.username.label_tag }}</td>
+    <td>{{ form.username }}</td>
 </tr>
 <tr>
-    <td>{{ django.auth.form.email.label_tag }}</td>
-    <td>{{ django.auth.form.email }}</td>
+    <td>{{ form.email.label_tag }}</td>
+    <td>{{ form.email }}</td>
 </tr>
 <tr>
-    <td>{{ django.auth.form.password.label_tag }}</td>
-    <td>{{ django.auth.form.password }}</td>
+    <td>{{ form.password.label_tag }}</td>
+    <td>{{ form.password }}</td>
 </tr>
 </table>
 

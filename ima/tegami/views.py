@@ -5,6 +5,9 @@ from django.utils import timezone
 from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest, HttpResponseRedirect 
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from django.urls import reverse
+from django.contrib.auth.forms import AuthenticationForm
+
+
 
 import json
 
@@ -58,7 +61,7 @@ def register_form(request):
     if request.user.is_authenticated:
         return HttpResponseRedirect(reverse('tegami:profile'))
     else:
-        return render(request, 'tegami/register_form.html')
+        return render(request, 'tegami/register_form.html', {'form': AuthenticationForm})
 
 def register(request):
     if not request.user.is_authenticated:
