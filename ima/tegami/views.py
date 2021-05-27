@@ -54,3 +54,20 @@ def send(request, chat_id):
     else:
         return HttpResponseRedirect(reverse('tegami:login'))
 
+def register_form(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('tegami:profile'))
+    else:
+        return render(request, 'tegami/register_form.html')
+
+def register_form(request):
+    if not request.user.is_authenticated:
+        username = request.POST.dict()['username']
+        email = request.POST.dict()['email']
+        passwd = request.POST.dict()['password']
+        try:
+            new_user = User.objects.create_user(username, email, passwd)
+        except ...:
+            return render(request, 'tegami/error_page.html', {'error':"Can't create user!"})
+    return HttpResponseRedirect(reverse('tegami:profile'))
+

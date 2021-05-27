@@ -18,7 +18,7 @@
 {% if user.is_authenticated %}
     <p>You are already logged in.</p>
 {% else %}
-<form method="post" action="{% url 'tegami:login' %}">
+<form method="post" action="{% url 'tegami:register' %}">
 {% csrf_token %}
 <table>
 <tr>
@@ -26,12 +26,16 @@
     <td>{{ form.username }}</td>
 </tr>
 <tr>
+    <td>{{ form.email.label_tag }}</td>
+    <td>{{ form.email }}</td>
+</tr>
+<tr>
     <td>{{ form.password.label_tag }}</td>
     <td>{{ form.password }}</td>
 </tr>
 </table>
 
-<input type="submit" value="Login">
+<input type="submit" value="Register">
 <input type="hidden" name="next" value="{{ next }}">
 </form>
 {% endif %}
