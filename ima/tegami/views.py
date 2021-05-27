@@ -1,16 +1,11 @@
 from django.shortcuts import render
-#from django.contrib.auth import LoginView
-# Create your views here.
 from django.utils import timezone
-from django.http import HttpResponse, JsonResponse, HttpResponseBadRequest, HttpResponseRedirect 
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect 
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from django.urls import reverse
 from django.contrib.auth.forms import AuthenticationForm
 
-
-
-import json
-
+from django.contrib.auth.models import User
 from . import models
 
 def index(request):
@@ -65,11 +60,11 @@ def register_form(request):
 
 def register(request):
     if not request.user.is_authenticated:
-        #try:
-        uname = request.POST.dict()['username']
-        passwd = request.POST.dict()['password']
-        new_user = User.objects.create_user(username=uname, password=passwd)
-        #except:
-        #    return render(request, 'tegami/error_page.html', {'error':"Can't create user!"})
+        try:
+            uname = request.POST.dict()['username']
+            passwd = request.POST.dict()['password']
+            new_user = User.objects.create_user(username=uname, password=passwd)
+        except:
+            return render(request, 'tegami/error_page.html', {'error':"Can't create user!"})
     return HttpResponseRedirect(reverse('tegami:profile'))
 
