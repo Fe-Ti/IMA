@@ -60,12 +60,12 @@ def register_form(request):
     else:
         return render(request, 'tegami/register_form.html')
 
-def register_form(request):
+def register(request):
     if not request.user.is_authenticated:
-        username = request.POST.dict()['username']
-        email = request.POST.dict()['email']
-        passwd = request.POST.dict()['password']
         try:
+            username = request.POST.dict()['username']
+            email = request.POST.dict()['email']
+            passwd = request.POST.dict()['password']
             new_user = User.objects.create_user(username, email, passwd)
         except ...:
             return render(request, 'tegami/error_page.html', {'error':"Can't create user!"})
