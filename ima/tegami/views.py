@@ -60,11 +60,22 @@ def register_form(request):
 
 def register(request):
     if not request.user.is_authenticated:
-        try:
-            uname = request.POST.dict()['username']
-            passwd = request.POST.dict()['password']
-            new_user = User.objects.create_user(username=uname, password=passwd)
-        except:
-            return render(request, 'tegami/error_page.html', {'error':"Can't create user!"})
-    return HttpResponseRedirect(reverse('tegami:profile'))
+        uname = request.POST.dict()['username']
+        passwd = request.POST.dict()['password']
+        new_user = User.objects.create_user(username=uname, password=passwd)
+        user = authenticate(request, username=uname, password=passwd)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(reverse('tegami:profile'))
+        else:
+            return render(request, 'tegami/error_page.html', {'error':"Some error occured, retry, please."})
 
+
+    user = authenticate(request, username=username, password=password)
+    if user is not None:
+        login(request, user)
+        # Redirect to a success page.
+        ...
+    else:
+        # Return an 'invalid login' error message.
+        ...
