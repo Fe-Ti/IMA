@@ -67,16 +67,8 @@ def register(request):
         user = authenticate(request, username=uname, password=passwd)
         if user is not None:
             login(request, user)
-            return HttpResponseRedirect(reverse('tegami:profile'))
         else:
             return render(request, 'tegami/error_page.html', {'error':"Some error occured, retry, please."})
-
-
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        # Redirect to a success page.
-        ...
-    else:
-        # Return an 'invalid login' error message.
-        ...
+    
+    return HttpResponseRedirect(reverse('tegami:profile'))
+    
