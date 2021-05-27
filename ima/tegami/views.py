@@ -67,7 +67,7 @@ def register(request):
             email = request.POST.dict()['email']
             passwd = request.POST.dict()['password']
             new_user = User.objects.create_user(username, email, passwd)
-        except ...:
+        except:
             return render(request, 'tegami/error_page.html', {'error':"Can't create user!"})
     return HttpResponseRedirect(reverse('tegami:profile'))
 
