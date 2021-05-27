@@ -9,6 +9,9 @@
 
     <div id="header">
         {% block header %}
+		<div >
+                <p><a class="button" href="{% url 'tegami:index' %}">Home</a></p>
+		</div>
             {% if user.is_authenticated %}
 		<div>
                 <p><a class="button" href="{% url 'tegami:logout' %}">Logout</a></p>
@@ -16,11 +19,9 @@
             {% else %}
 		<div >
                 <p><a class="button" href="{% url 'tegami:login' %}">Login</a></p>
+                <p><a class="button" href="{% url 'tegami:register_form' %}">Register</a></p>
 		</div>
             {% endif %}
-		<div >
-                <p><a class="button" href="{% url 'tegami:index' %}">Home</a></p>
-		</div>
         {% endblock %}
     </div>
 </head>
