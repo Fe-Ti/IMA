@@ -8,8 +8,8 @@ from . import views
 app_name = 'tegami'
 urlpatterns = [
     path('', views.index, name='index'),
-    path('register/form', views.index, name='register_form'),
-    path('register/registering', views.index, name='register'),
+    path('registration/form', views.index, name='register_form'),
+    path('registration/register', views.index, name='register'),
     path('profile/', views.profile, name='profile'),
     path('chats/<int:chat_id>/', views.chat, name='chat'),
     path('chats/<int:chat_id>/send', views.send, name='send'),
